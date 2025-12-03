@@ -31,8 +31,15 @@ jobs:
       - name: Build React App
         run: npm run build
 
+      - name: Display build folder contents
+        run: |
+          echo "pwd: $(pwd)"
+          ls -la
+          ls -la dist || echo "dist missing"
+          ls -la build || echo "build missing"
+
       - name: Upload production build
         uses: actions/upload-artifact@v4
         with:
           name: react-build
-          path: build/
+          path: dist/
